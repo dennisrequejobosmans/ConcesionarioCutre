@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a7dd05598bde4214b2271aedbf0182b2" Name="Diagram1" ZoomLevel="82">
+        <EntityTypeShape EntityType="ConcesionarioModel.Coch" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ConcesionarioModel.Operacion" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ConcesionarioModel.Cliente" Width="1.5" PointX="0.75" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="ConcesionarioModel.Empleado" Width="1.5" PointX="0.75" PointY="9.5" IsExpanded="true" />
+        <AssociationConnector Association="ConcesionarioModel.FK__Operacion__TIPO__403A8C7D" ManuallyRouted="false" />
+        <AssociationConnector Association="ConcesionarioModel.FK__Operacion__IDCLI__4222D4EF" ManuallyRouted="false" />
+        <AssociationConnector Association="ConcesionarioModel.FK__Operacion__IDEMP__412EB0B6" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

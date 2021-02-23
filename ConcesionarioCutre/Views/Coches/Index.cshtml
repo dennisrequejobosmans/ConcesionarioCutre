@@ -1,0 +1,76 @@
+﻿@model IEnumerable<ConcesionarioCutre.Coch>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MARCA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MODELO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NUM_PUERTAS)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.COLOR)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.KILOMETROS)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TIPO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GARANTIA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FOTOGRAFIA)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.MARCA)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MODELO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NUM_PUERTAS)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.COLOR)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.KILOMETROS)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TIPO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GARANTIA)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FOTOGRAFIA)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

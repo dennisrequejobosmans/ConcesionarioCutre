@@ -1,0 +1,326 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ConcesionarioModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Coches">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MARCA" Type="varchar" MaxLength="50" />
+          <Property Name="MODELO" Type="varchar" MaxLength="50" />
+          <Property Name="NUM_PUERTAS" Type="int" />
+          <Property Name="COLOR" Type="varchar" MaxLength="50" />
+          <Property Name="KILOMETROS" Type="int" />
+          <Property Name="TIPO" Type="varchar" MaxLength="50" />
+          <Property Name="GARANTIA" Type="int" />
+          <Property Name="FOTOGRAFIA" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Operacion">
+          <Key>
+            <PropertyRef Name="IDCOCHE" />
+            <PropertyRef Name="IDEMPLEADO" />
+            <PropertyRef Name="IDCLIENTE" />
+          </Key>
+          <Property Name="IDCOCHE" Type="int" Nullable="false" />
+          <Property Name="IDEMPLEADO" Type="int" Nullable="false" />
+          <Property Name="IDCLIENTE" Type="int" Nullable="false" />
+          <Property Name="PRECIO" Type="decimal" Precision="8" Scale="2" />
+          <Property Name="TIPO" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Clientes">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NIF" Type="varchar" MaxLength="50" />
+          <Property Name="NOMBRE" Type="varchar" MaxLength="50" />
+          <Property Name="APELLIDOS" Type="varchar" MaxLength="50" />
+          <Property Name="DIRECCION" Type="varchar" MaxLength="50" />
+          <Property Name="EMAIL" Type="varchar" MaxLength="50" />
+          <Property Name="TELEFONO" Type="int" />
+          <Property Name="NUMCOCHES" Type="int" />
+        </EntityType>
+        <EntityType Name="Empleados">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NIF" Type="varchar" MaxLength="50" />
+          <Property Name="NOMBRE" Type="varchar" MaxLength="50" />
+          <Property Name="APELLIDOS" Type="varchar" MaxLength="50" />
+          <Property Name="DIRECCION" Type="varchar" MaxLength="50" />
+          <Property Name="EMAIL" Type="varchar" MaxLength="50" />
+          <Property Name="TELEFONO" Type="int" />
+          <Property Name="SALARIO" Type="int" />
+        </EntityType>
+        <Association Name="FK__Operacion__IDCLI__4222D4EF">
+          <End Role="Clientes" Type="Self.Clientes" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Operacion" Type="Self.Operacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clientes">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Operacion">
+              <PropertyRef Name="IDCLIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Operacion__IDEMP__412EB0B6">
+          <End Role="Empleados" Type="Self.Empleados" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Operacion" Type="Self.Operacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleados">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Operacion">
+              <PropertyRef Name="IDEMPLEADO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Operacion__TIPO__403A8C7D">
+          <End Role="Coches" Type="Self.Coches" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Operacion" Type="Self.Operacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Coches">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Operacion">
+              <PropertyRef Name="IDCOCHE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ConcesionarioModelStoreContainer">
+          <EntitySet Name="Coches" EntityType="Self.Coches" Schema="Concesionario" store:Type="Tables" />
+          <EntitySet Name="Operacion" EntityType="Self.Operacion" Schema="Concesionario" store:Type="Tables" />
+          <EntitySet Name="Clientes" EntityType="Self.Clientes" Schema="Personas" store:Type="Tables" />
+          <EntitySet Name="Empleados" EntityType="Self.Empleados" Schema="Personas" store:Type="Tables" />
+          <AssociationSet Name="FK__Operacion__IDCLI__4222D4EF" Association="Self.FK__Operacion__IDCLI__4222D4EF">
+            <End Role="Clientes" EntitySet="Clientes" />
+            <End Role="Operacion" EntitySet="Operacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Operacion__IDEMP__412EB0B6" Association="Self.FK__Operacion__IDEMP__412EB0B6">
+            <End Role="Empleados" EntitySet="Empleados" />
+            <End Role="Operacion" EntitySet="Operacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Operacion__TIPO__403A8C7D" Association="Self.FK__Operacion__TIPO__403A8C7D">
+            <End Role="Coches" EntitySet="Coches" />
+            <End Role="Operacion" EntitySet="Operacion" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ConcesionarioModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Coch">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MARCA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MODELO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NUM_PUERTAS" Type="Int32" />
+          <Property Name="COLOR" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="KILOMETROS" Type="Int32" />
+          <Property Name="TIPO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="GARANTIA" Type="Int32" />
+          <Property Name="FOTOGRAFIA" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Operacions" Relationship="Self.FK__Operacion__TIPO__403A8C7D" FromRole="Coches" ToRole="Operacion" />
+        </EntityType>
+        <EntityType Name="Operacion">
+          <Key>
+            <PropertyRef Name="IDCOCHE" />
+            <PropertyRef Name="IDEMPLEADO" />
+            <PropertyRef Name="IDCLIENTE" />
+          </Key>
+          <Property Name="IDCOCHE" Type="Int32" Nullable="false" />
+          <Property Name="IDEMPLEADO" Type="Int32" Nullable="false" />
+          <Property Name="IDCLIENTE" Type="Int32" Nullable="false" />
+          <Property Name="PRECIO" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="TIPO" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Coch" Relationship="Self.FK__Operacion__TIPO__403A8C7D" FromRole="Operacion" ToRole="Coches" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK__Operacion__IDCLI__4222D4EF" FromRole="Operacion" ToRole="Clientes" />
+          <NavigationProperty Name="Empleado" Relationship="Self.FK__Operacion__IDEMP__412EB0B6" FromRole="Operacion" ToRole="Empleados" />
+        </EntityType>
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NIF" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NOMBRE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="APELLIDOS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DIRECCION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TELEFONO" Type="Int32" />
+          <Property Name="NUMCOCHES" Type="Int32" />
+          <NavigationProperty Name="Operacions" Relationship="Self.FK__Operacion__IDCLI__4222D4EF" FromRole="Clientes" ToRole="Operacion" />
+        </EntityType>
+        <EntityType Name="Empleado">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NIF" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NOMBRE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="APELLIDOS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DIRECCION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TELEFONO" Type="Int32" />
+          <Property Name="SALARIO" Type="Int32" />
+          <NavigationProperty Name="Operacions" Relationship="Self.FK__Operacion__IDEMP__412EB0B6" FromRole="Empleados" ToRole="Operacion" />
+        </EntityType>
+        <Association Name="FK__Operacion__TIPO__403A8C7D">
+          <End Role="Coches" Type="Self.Coch" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Operacion" Type="Self.Operacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Coches">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Operacion">
+              <PropertyRef Name="IDCOCHE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Operacion__IDCLI__4222D4EF">
+          <End Role="Clientes" Type="Self.Cliente" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Operacion" Type="Self.Operacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clientes">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Operacion">
+              <PropertyRef Name="IDCLIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Operacion__IDEMP__412EB0B6">
+          <End Role="Empleados" Type="Self.Empleado" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Operacion" Type="Self.Operacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleados">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Operacion">
+              <PropertyRef Name="IDEMPLEADO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ConcesionarioEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Coches" EntityType="Self.Coch" />
+          <EntitySet Name="Operacions" EntityType="Self.Operacion" />
+          <EntitySet Name="Clientes" EntityType="Self.Cliente" />
+          <EntitySet Name="Empleados" EntityType="Self.Empleado" />
+          <AssociationSet Name="FK__Operacion__TIPO__403A8C7D" Association="Self.FK__Operacion__TIPO__403A8C7D">
+            <End Role="Coches" EntitySet="Coches" />
+            <End Role="Operacion" EntitySet="Operacions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Operacion__IDCLI__4222D4EF" Association="Self.FK__Operacion__IDCLI__4222D4EF">
+            <End Role="Clientes" EntitySet="Clientes" />
+            <End Role="Operacion" EntitySet="Operacions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Operacion__IDEMP__412EB0B6" Association="Self.FK__Operacion__IDEMP__412EB0B6">
+            <End Role="Empleados" EntitySet="Empleados" />
+            <End Role="Operacion" EntitySet="Operacions" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ConcesionarioModelStoreContainer" CdmEntityContainer="ConcesionarioEntities">
+          <EntitySetMapping Name="Coches">
+            <EntityTypeMapping TypeName="ConcesionarioModel.Coch">
+              <MappingFragment StoreEntitySet="Coches">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="MARCA" ColumnName="MARCA" />
+                <ScalarProperty Name="MODELO" ColumnName="MODELO" />
+                <ScalarProperty Name="NUM_PUERTAS" ColumnName="NUM_PUERTAS" />
+                <ScalarProperty Name="COLOR" ColumnName="COLOR" />
+                <ScalarProperty Name="KILOMETROS" ColumnName="KILOMETROS" />
+                <ScalarProperty Name="TIPO" ColumnName="TIPO" />
+                <ScalarProperty Name="GARANTIA" ColumnName="GARANTIA" />
+                <ScalarProperty Name="FOTOGRAFIA" ColumnName="FOTOGRAFIA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Operacions">
+            <EntityTypeMapping TypeName="ConcesionarioModel.Operacion">
+              <MappingFragment StoreEntitySet="Operacion">
+                <ScalarProperty Name="IDCOCHE" ColumnName="IDCOCHE" />
+                <ScalarProperty Name="IDEMPLEADO" ColumnName="IDEMPLEADO" />
+                <ScalarProperty Name="IDCLIENTE" ColumnName="IDCLIENTE" />
+                <ScalarProperty Name="PRECIO" ColumnName="PRECIO" />
+                <ScalarProperty Name="TIPO" ColumnName="TIPO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Clientes">
+            <EntityTypeMapping TypeName="ConcesionarioModel.Cliente">
+              <MappingFragment StoreEntitySet="Clientes">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NIF" ColumnName="NIF" />
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="APELLIDOS" ColumnName="APELLIDOS" />
+                <ScalarProperty Name="DIRECCION" ColumnName="DIRECCION" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="TELEFONO" ColumnName="TELEFONO" />
+                <ScalarProperty Name="NUMCOCHES" ColumnName="NUMCOCHES" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Empleados">
+            <EntityTypeMapping TypeName="ConcesionarioModel.Empleado">
+              <MappingFragment StoreEntitySet="Empleados">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NIF" ColumnName="NIF" />
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="APELLIDOS" ColumnName="APELLIDOS" />
+                <ScalarProperty Name="DIRECCION" ColumnName="DIRECCION" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="TELEFONO" ColumnName="TELEFONO" />
+                <ScalarProperty Name="SALARIO" ColumnName="SALARIO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
