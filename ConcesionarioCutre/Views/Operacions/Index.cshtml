@@ -30,29 +30,30 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.PRECIO)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TIPO)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Coch.MARCA)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Cliente.NIF)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Empleado.NIF)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PRECIO)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TIPO)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Coch.MARCA)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cliente.NIF)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Empleado.NIF)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.IDCOCHE, id1 = item.IDCLIENTE, id2 = item.IDEMPLEADO }) |
+                @Html.ActionLink("Details", "Details", new { id = item.IDCOCHE, id1 = item.IDCLIENTE, id2 = item.IDEMPLEADO }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.IDCOCHE, id1 = item.IDCLIENTE, id2 = item.IDEMPLEADO })
+            </td>
+        </tr>
+    }
 
 </table>

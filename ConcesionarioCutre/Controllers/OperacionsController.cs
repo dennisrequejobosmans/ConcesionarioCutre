@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using ConcesionarioCutre;
 
+
 namespace ConcesionarioCutre.Controllers
 {
     public class OperacionsController : Controller
@@ -22,13 +23,13 @@ namespace ConcesionarioCutre.Controllers
         }
 
         // GET: Operacions/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int? id,int? id1, int? id2)
         {
-            if (id == null)
+            if (id == null||id1==null||id2==null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Operacion operacion = db.Operacions.Find(id);
+            Operacion operacion = db.Operacions.Where(o=>o.IDCOCHE==id||o.IDCLIENTE==id2||o.IDEMPLEADO==id1).First();
             if (operacion == null)
             {
                 return HttpNotFound();
@@ -39,9 +40,20 @@ namespace ConcesionarioCutre.Controllers
         // GET: Operacions/Create
         public ActionResult Create()
         {
+
             ViewBag.IDCOCHE = new SelectList(db.Coches, "ID", "REFERENCIA");
             ViewBag.IDCLIENTE = new SelectList(db.Clientes, "ID", "NIF");
             ViewBag.IDEMPLEADO = new SelectList(db.Empleados, "ID", "NIF");
+            
+
+            ViewBag.TIPO = db.Operacions.Select(c => new SelectListItem
+            {
+                Value = c.TIPO.ToString(),
+                Text = c.TIPO.ToString()
+            }).Distinct();
+
+
+
             return View();
         }
 
@@ -50,8 +62,9 @@ namespace ConcesionarioCutre.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IDCOCHE,IDEMPLEADO,IDCLIENTE,PRECIO,TIPO")] Operacion operacion)
+        public ActionResult Create([Bind(Include = "IDCOCHE,IDEMPLEADO,IDCLIENTE,PRECIO,TIPO")]Operacion operacion)
         {
+
             if (ModelState.IsValid)
             {
                 db.Operacions.Add(operacion);
@@ -66,20 +79,30 @@ namespace ConcesionarioCutre.Controllers
         }
 
         // GET: Operacions/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int? id,int? id1,int? id2)
         {
-            if (id == null)
+
+            if (id == null|| id1 == null || id2 == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Operacion operacion = db.Operacions.Find(id);
+
+            Operacion operacion = db.Operacions.Where(o => o.IDCOCHE == id || o.IDCLIENTE == id2 || o.IDEMPLEADO == id1).First();
             if (operacion == null)
             {
                 return HttpNotFound();
             }
+
             ViewBag.IDCOCHE = new SelectList(db.Coches, "ID", "REFERENCIA", operacion.IDCOCHE);
             ViewBag.IDCLIENTE = new SelectList(db.Clientes, "ID", "NIF", operacion.IDCLIENTE);
             ViewBag.IDEMPLEADO = new SelectList(db.Empleados, "ID", "NIF", operacion.IDEMPLEADO);
+
+            ViewBag.TIPO = db.Operacions.Select(c => new SelectListItem
+            {
+                Value = c.TIPO.ToString(),
+                Text = c.TIPO.ToString()
+            }).Distinct();
+
             return View(operacion);
         }
 
@@ -103,13 +126,13 @@ namespace ConcesionarioCutre.Controllers
         }
 
         // GET: Operacions/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int? id, int? id1, int? id2)
         {
-            if (id == null)
+            if (id == null || id1 == null || id2 == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Operacion operacion = db.Operacions.Find(id);
+            Operacion operacion = db.Operacions.Where(o => o.IDCOCHE == id || o.IDCLIENTE == id2 || o.IDEMPLEADO == id1).First();
             if (operacion == null)
             {
                 return HttpNotFound();
@@ -120,9 +143,9 @@ namespace ConcesionarioCutre.Controllers
         // POST: Operacions/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int? id, int? id1, int? id2)
         {
-            Operacion operacion = db.Operacions.Find(id);
+            Operacion operacion = db.Operacions.Where(o => o.IDCOCHE == id || o.IDCLIENTE == id2 || o.IDEMPLEADO == id1).First();
             db.Operacions.Remove(operacion);
             db.SaveChanges();
             return RedirectToAction("Index");

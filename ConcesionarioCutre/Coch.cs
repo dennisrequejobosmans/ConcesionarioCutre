@@ -26,7 +26,9 @@ namespace ConcesionarioCutre
         public Nullable<int> NUM_PUERTAS { get; set; }
         public string COLOR { get; set; }
         public Nullable<int> KILOMETROS { get; set; }
+
         public string TIPO { get; set; }
+
         public Nullable<int> GARANTIA { get; set; }
         public string FOTOGRAFIA { get; set; }
         public string REFERENCIA { get; set; }
