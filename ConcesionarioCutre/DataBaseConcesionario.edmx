@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ConcesionarioModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ConcesionarioModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Coches">
           <Key>
             <PropertyRef Name="ID" />
@@ -18,6 +18,7 @@
           <Property Name="TIPO" Type="varchar" MaxLength="50" />
           <Property Name="GARANTIA" Type="int" />
           <Property Name="FOTOGRAFIA" Type="varchar" MaxLength="100" />
+          <Property Name="REFERENCIA" Type="varchar" MaxLength="30" />
         </EntityType>
         <EntityType Name="Operacion">
           <Key>
@@ -117,8 +118,7 @@
             <End Role="Operacion" EntitySet="Operacion" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ConcesionarioModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -136,6 +136,7 @@
           <Property Name="GARANTIA" Type="Int32" />
           <Property Name="FOTOGRAFIA" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Operacions" Relationship="Self.FK__Operacion__TIPO__403A8C7D" FromRole="Coches" ToRole="Operacion" />
+          <Property Name="REFERENCIA" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Operacion">
           <Key>
@@ -249,6 +250,7 @@
           <EntitySetMapping Name="Coches">
             <EntityTypeMapping TypeName="ConcesionarioModel.Coch">
               <MappingFragment StoreEntitySet="Coches">
+                <ScalarProperty Name="REFERENCIA" ColumnName="REFERENCIA" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="MARCA" ColumnName="MARCA" />
                 <ScalarProperty Name="MODELO" ColumnName="MODELO" />

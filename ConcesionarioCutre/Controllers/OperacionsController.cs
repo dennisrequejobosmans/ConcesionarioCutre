@@ -39,7 +39,7 @@ namespace ConcesionarioCutre.Controllers
         // GET: Operacions/Create
         public ActionResult Create()
         {
-            ViewBag.IDCOCHE = new SelectList(db.Coches, "ID", "MARCA");
+            ViewBag.IDCOCHE = new SelectList(db.Coches, "ID", "REFERENCIA");
             ViewBag.IDCLIENTE = new SelectList(db.Clientes, "ID", "NIF");
             ViewBag.IDEMPLEADO = new SelectList(db.Empleados, "ID", "NIF");
             return View();
@@ -59,7 +59,7 @@ namespace ConcesionarioCutre.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.IDCOCHE = new SelectList(db.Coches, "ID", "MARCA", operacion.IDCOCHE);
+            ViewBag.IDCOCHE = new SelectList(db.Coches, "ID", "REFERENCIA", operacion.IDCOCHE);
             ViewBag.IDCLIENTE = new SelectList(db.Clientes, "ID", "NIF", operacion.IDCLIENTE);
             ViewBag.IDEMPLEADO = new SelectList(db.Empleados, "ID", "NIF", operacion.IDEMPLEADO);
             return View(operacion);
@@ -77,7 +77,7 @@ namespace ConcesionarioCutre.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.IDCOCHE = new SelectList(db.Coches, "ID", "MARCA", operacion.IDCOCHE);
+            ViewBag.IDCOCHE = new SelectList(db.Coches, "ID", "REFERENCIA", operacion.IDCOCHE);
             ViewBag.IDCLIENTE = new SelectList(db.Clientes, "ID", "NIF", operacion.IDCLIENTE);
             ViewBag.IDEMPLEADO = new SelectList(db.Empleados, "ID", "NIF", operacion.IDEMPLEADO);
             return View(operacion);
@@ -96,7 +96,7 @@ namespace ConcesionarioCutre.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.IDCOCHE = new SelectList(db.Coches, "ID", "MARCA", operacion.IDCOCHE);
+            ViewBag.IDCOCHE = new SelectList(db.Coches, "ID", "REFERENCIA", operacion.IDCOCHE);
             ViewBag.IDCLIENTE = new SelectList(db.Clientes, "ID", "NIF", operacion.IDCLIENTE);
             ViewBag.IDEMPLEADO = new SelectList(db.Empleados, "ID", "NIF", operacion.IDEMPLEADO);
             return View(operacion);

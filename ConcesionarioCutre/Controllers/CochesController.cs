@@ -46,7 +46,7 @@ namespace ConcesionarioCutre.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,MARCA,MODELO,NUM_PUERTAS,COLOR,KILOMETROS,TIPO,GARANTIA,FOTOGRAFIA")] Coch coch)
+        public ActionResult Create([Bind(Include = "ID,MARCA,MODELO,NUM_PUERTAS,COLOR,KILOMETROS,TIPO,GARANTIA,FOTOGRAFIA,REFERENCIA")] Coch coch)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +78,7 @@ namespace ConcesionarioCutre.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,MARCA,MODELO,NUM_PUERTAS,COLOR,KILOMETROS,TIPO,GARANTIA,FOTOGRAFIA")] Coch coch)
+        public ActionResult Edit([Bind(Include = "ID,MARCA,MODELO,NUM_PUERTAS,COLOR,KILOMETROS,TIPO,GARANTIA,FOTOGRAFIA,REFERENCIA")] Coch coch)
         {
             if (ModelState.IsValid)
             {

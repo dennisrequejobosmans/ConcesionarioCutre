@@ -11,27 +11,17 @@ namespace ConcesionarioCutre
 {
     using System;
     using System.Collections.Generic;
-
+    
     public partial class Operacion
     {
-        
-
         public int IDCOCHE { get; set; }
         public int IDEMPLEADO { get; set; }
         public int IDCLIENTE { get; set; }
         public Nullable<decimal> PRECIO { get; set; }
         public string TIPO { get; set; }
-
-
+    
         public virtual Coch Coch { get; set; }
         public virtual Cliente Cliente { get; set; }
         public virtual Empleado Empleado { get; set; }
-
-
-        
-        
-
-
-}
-    
+    }
 }

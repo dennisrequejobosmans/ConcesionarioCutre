@@ -29,6 +29,7 @@ namespace ConcesionarioCutre
         public string TIPO { get; set; }
         public Nullable<int> GARANTIA { get; set; }
         public string FOTOGRAFIA { get; set; }
+        public string REFERENCIA { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Operacion> Operacions { get; set; }
